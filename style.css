@@ -320,30 +320,131 @@ ul { list-style: none; }
 .footer-col__socials { display: flex; gap: 1.5rem; font-size: 1.5rem; }
 .footer-copyright { text-align: center; padding: 2rem 0; border-top: 1px solid #444; }
 
-/* --- 8. WHATSAPP POPUP --- */
+/* =================================================================== */
+/* === 8. ENHANCED WHATSAPP POPUP ==================================== */
+/* =================================================================== */
+
+/* ENHANCEMENT: Added WhatsApp brand colors to your theme variables for reuse */
+:root {
+    --color-whatsapp: #25D366;
+    --color-whatsapp-dark: #128C7E;
+}
+
 .whatsapp-popup {
-    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 2000;
-    background-color: var(--color-white); max-width: 340px; border-radius: 10px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15); padding: 1.5rem;
-    opacity: 0; transform: translateY(20px) scale(0.95); visibility: hidden;
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2000;
+    max-width: 350px;
+    width: calc(100% - 2rem);
+    background-color: var(--color-white);
+    
+    /* ENHANCEMENT: Added a subtle border-radius and a prominent top border for branding */
+    border-radius: 12px;
+    border-top: 4px solid var(--color-whatsapp);
+
+    /* ENHANCEMENT: Using a consistent shadow from your theme variables */
+    box-shadow: var(--shadow-medium);
+    padding: 1.5rem;
+    
+    /* ENHANCEMENT: Refined entry animation for a smoother feel */
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    visibility: hidden;
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom right;
 }
 
 .whatsapp-popup.show {
-    opacity: 1; transform: translateY(0) scale(1); visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
 }
 
+/* ENHANCEMENT: Greatly improved close button for better UX and aesthetics */
 .popup-close-btn {
-    position: absolute; top: 8px; right: 10px; background: transparent; border: none;
-    font-size: 1.2rem; color: #aaa; cursor: pointer; transition: color var(--transition-fast);
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
-.popup-close-btn:hover { color: var(--color-dark); }
-.popup-content { text-align: center; }
-.popup-content h4 { font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem; }
-.popup-content p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; color: #555; }
-.popup-content .btn { width: 100%; text-align: center; }
-.popup-content .btn i { margin-right: 8px; }
+.popup-close-btn i {
+    font-size: 1rem;
+    color: #888;
+    transition: color var(--transition-fast);
+}
+
+.popup-close-btn:hover {
+    background-color: #e2e2e2;
+    transform: rotate(90deg);
+}
+
+.popup-close-btn:hover i {
+    color: var(--color-dark);
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-content h4 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+}
+
+.popup-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem; /* Increased spacing */
+    color: #555;
+}
+
+/* ENHANCEMENT: Custom styling for the WhatsApp button */
+.popup-content .btn {
+    display: inline-flex; /* Allows for centering and gap */
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem; /* Space between icon and text */
+    width: 100%;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    font-size: 1rem;
+    background-color: var(--color-whatsapp);
+    color: var(--color-white);
+}
+
+.popup-content .btn:hover {
+    background-color: var(--color-whatsapp-dark);
+    transform: translateY(-3px) scale(1.02); /* More engaging hover effect */
+    box-shadow: var(--shadow-medium);
+}
+
+.popup-content .btn i {
+    font-size: 1.3rem; /* Made the WhatsApp icon slightly larger */
+    margin-right: 0; /* Removed old margin in favor of gap */
+}
+
+/* Responsive adjustments for the popup on smaller screens */
+@media (max-width: 480px) {
+    .whatsapp-popup {
+        bottom: 1rem;
+        right: 1rem;
+        width: calc(100% - 2rem);
+    }
+}
 
 /* --- 9. MOBILE NAVIGATION & RESPONSIVENESS --- */
 .nav-toggle {
